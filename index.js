@@ -19,6 +19,12 @@ function run_cmd(cmd, args, callback) {
     child.stdout.on('end', function() {
         callback (resp)
     });
+    child.on('error', function (err) {
+        console.log(err.message);
+    });
+    child.on('close', function (code) {
+        console.log(code);
+    })
 }
 
 app.post('/web-hook', (req, res) => {
